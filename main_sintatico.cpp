@@ -1,17 +1,24 @@
 #include <iostream>
 #include <clocale>
-#include<locale>
+#include <locale>
 #include "AnaliseLexica.h"
 #include "AnaliseSintatica.h"
 
 using namespace std;
 
-int main() {
-    setlocale(LC_ALL, "pt-BR.UTF-8");
-    AnaliseLexica lex("erro_lexico1.xpp");
+int main(int argc, char* argv[]) {
+
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+
+    if (argc < 2) {
+        cout << "Uso: ./sintatico <arquivo.xpp>" << endl;
+        return 1;
+    }
+
+    AnaliseLexica lex(argv[1]);
 
     if (!lex.abrirArquivo()) {
-        cout << "Erro ao abrir o arquivo fonte." << endl;
+        cout << "Erro ao abrir o arquivo fonte: " << argv[1] << endl;
         return 1;
     }
 

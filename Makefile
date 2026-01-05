@@ -1,7 +1,8 @@
 # =====================================
 # Makefile - Compiladores (X++)
-# Autores: Andressa Caroline Lopes de Assis
-#          Bruno Augusto de Oliveira
+# Autores:
+#   Andressa Caroline Lopes de Assis
+#   Bruno Augusto de Oliveira
 # =====================================
 
 CXX = g++
@@ -18,8 +19,11 @@ SINTATICO = sintatico
 # ======================
 TESTES_DIR = testes
 
+# Arquivo de teste padrão (pode sobrescrever na linha de comando)
+ARQ ?= teste.xpp
+
 # ======================
-# Arquivos
+# Arquivos fonte
 # ======================
 LEXICO_SRC = main_lexico.cpp AnaliseLexica.cpp
 SINTATICO_SRC = main_sintatico.cpp AnaliseLexica.cpp AnaliseSintatica.cpp
@@ -32,11 +36,13 @@ HEADERS = AnaliseLexica.h AnaliseSintatica.h Token.h
 
 all: $(LEXICO) $(SINTATICO)
 
-# Compila o analisador léxico
+# ======================
+# Compilação
+# ======================
+
 $(LEXICO): $(LEXICO_SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(LEXICO_SRC) -o $(LEXICO)
 
-# Compila o analisador sintático
 $(SINTATICO): $(SINTATICO_SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(SINTATICO_SRC) -o $(SINTATICO)
 
@@ -45,14 +51,14 @@ $(SINTATICO): $(SINTATICO_SRC) $(HEADERS)
 # ======================
 
 run-lexico: $(LEXICO)
-	./$(LEXICO) $(TESTES_DIR)/teste.xpp
+	./$(LEXICO) $(TESTES_DIR)/$(ARQ)
 
 run-sintatico: $(SINTATICO)
-	./$(SINTATICO) $(TESTES_DIR)/teste.xpp
+	./$(SINTATICO) $(TESTES_DIR)/$(ARQ)
 
 # ======================
 # Limpeza
 # ======================
 
 clean:
-	rm -f $(LEXICO) $(SINTATICO)
+	del /Q $(LEXICO).exe $(SINTATICO).exe 2>nul || rm -f $(LEXICO) $(SINTATICO)
