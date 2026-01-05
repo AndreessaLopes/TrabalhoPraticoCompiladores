@@ -1,0 +1,11 @@
+# Compilados
+*.exe
+*.o
+
+# Pastas de build
+bin/
+obj/
+
+# Code::Blocks
+*.layout
+*.depend

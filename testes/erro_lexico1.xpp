@@ -1,0 +1,9 @@
+class TesteErro1 {
+    int x;
+
+    constructor() {
+        x = 10;
+        string msg;
+        msg = "texto sem fechar;
+    }
+}
