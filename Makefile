@@ -1,6 +1,7 @@
 # =====================================
 # Makefile - Compiladores (X++)
-# Autora: Andressa Lopes
+# Autores: Andressa Caroline Lopes de Assis
+#          Bruno Augusto de Oliveira
 # =====================================
 
 CXX = g++
@@ -11,6 +12,11 @@ CXXFLAGS = -Wall -Wextra -std=c++17
 # ======================
 LEXICO = lexico
 SINTATICO = sintatico
+
+# ======================
+# Diretórios
+# ======================
+TESTES_DIR = testes
 
 # ======================
 # Arquivos
@@ -39,10 +45,10 @@ $(SINTATICO): $(SINTATICO_SRC) $(HEADERS)
 # ======================
 
 run-lexico: $(LEXICO)
-	./$(LEXICO) teste.xpp
+	./$(LEXICO) $(TESTES_DIR)/teste.xpp
 
 run-sintatico: $(SINTATICO)
-	./$(SINTATICO) teste.xpp
+	./$(SINTATICO) $(TESTES_DIR)/teste.xpp
 
 # ======================
 # Limpeza
