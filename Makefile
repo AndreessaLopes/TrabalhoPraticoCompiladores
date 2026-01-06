@@ -1,8 +1,8 @@
 # =====================================
 # Makefile - Compiladores (X++)
 # Autores:
-#   Andressa Caroline Lopes de Assis
-#   Bruno Augusto de Oliveira
+#	Andressa Caroline Lopes de Assis - RA: 0072749 - C�digo de An�lise L�xica Completa, pesquisas, etc
+#   Bruno Augusto de Oliveira - RA: 0073211 - C�digo de An�lise Sint�tica Completa, pesquisas, etc
 # =====================================
 
 CXX = g++

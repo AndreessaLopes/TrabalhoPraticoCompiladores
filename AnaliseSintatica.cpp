@@ -1,3 +1,9 @@
+/*
+   Nomes:
+   Andressa Caroline Lopes de Assis - RA: 0072749 - Código de Análise Léxica Completa, pesquisas, etc
+   Bruno Augusto de Oliveira - RA: 0073211 - Código de Análise Sintática Completa, pesquisas, etc
+*/
+
 #include "AnaliseSintatica.h"
 #include <iostream>
 #include <cstdlib>
