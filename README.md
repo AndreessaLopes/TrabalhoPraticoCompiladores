@@ -82,6 +82,17 @@ O analisador léxico é responsável por ler o código-fonte escrito em **X++** 
 mingw32-make run-lexico
 ```
 
+## Ou especificando o arquivo de teste:
+```bash
+mingw32-make run-lexico ARQ=teste.xpp
+```
+```bash
+mingw32-make run-lexico ARQ=erro_lexico1.xpp
+```
+```bash
+mingw32-make run-lexico ARQ=erro_lexico2.xpp
+```
+
 ## 🧩 Etapa 2 – Analisador Sintático
 
 O analisador sintático foi implementado utilizando a técnica de **descida recursiva**, conforme os capítulos 4 e 5 do livro do Delamaro.
@@ -122,6 +133,17 @@ A análise é interrompida imediatamente ao detectar um erro sintático.
 
 ```bash
 mingw32-make run-sintatico
+```
+
+## Ou especificando o arquivo de teste:
+```bash
+mingw32-make run-sintatico ARQ=teste.xpp
+```
+```bash
+mingw32-make run-sintatico ARQ=erro_lexico1.xpp
+```
+```bash
+mingw32-make run-sintatico ARQ=erro_lexico2.xpp
 ```
 
 ---
