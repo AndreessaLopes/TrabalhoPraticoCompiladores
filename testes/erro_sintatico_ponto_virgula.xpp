@@ -1,0 +1,7 @@
+class Teste {
+    int x
+
+    constructor() {
+        x = 10;
+    }
+}

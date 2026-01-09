@@ -1,39 +1,35 @@
-# Trabalho Prático – Compiladores  
-## Analisador Léxico e Sintático da Linguagem X++
+# Compilador X++ – Análise Léxica e Sintática
 
-Este repositório contém a implementação de um **Analisador Léxico** e de um **Analisador Sintático** para a linguagem **X++**, desenvolvidos em **C++**, conforme as especificações apresentadas no livro:
+Este repositório contém a implementação das duas primeiras etapas de um compilador para a linguagem **X++**, desenvolvida como Trabalho Prático da disciplina de **Compiladores** do Instituto Federal de Minas Gerais (IFMG).
 
-> **DELAMARO, M. E.**  
-> *Como Construir um Compilador: utilizando ferramenta Java*.  
-> São Paulo: Novatec, 2004.
-
-O projeto faz parte da disciplina de **Compiladores** e contempla a **Etapa 1 (Analisador Léxico)** e a **Etapa 2 (Analisador Sintático)** do trabalho prático.
+O projeto contempla:
+- Analisador léxico completo
+- Analisador sintático baseado em descida recursiva
+- Tratamento de erros léxicos e sintáticos
+- Conjunto de testes válidos e inválidos
+- Automatização da compilação e execução via Makefile
 
 ---
 
-## 👥 Integrantes da Dupla
+## 👥 Autores
 
 - **Andressa Caroline Lopes de Assis**  
-- **Bruno Augusto de Oliveira**
+  RA: 0072749  
+  Responsável pela análise léxica, organização dos testes, Makefile e documentação
 
----
+- **Bruno Augusto de Oliveira**  
+  RA: 0073211  
+  Responsável pela análise sintática e definição das regras gramaticais
 
-## 🎯 Objetivos do Projeto
-
-- Implementar um **analisador léxico** para a linguagem X++.
-- Reconhecer todos os tokens definidos na especificação da linguagem.
-- Detectar e reportar **erros léxicos**, informando a linha do erro.
-- Implementar um **analisador sintático descendente recursivo**.
-- Validar programas escritos corretamente em X++.
-- Identificar e reportar **erros sintáticos**.
-- Integrar o analisador léxico ao analisador sintático.
+Curso: Bacharelado em Engenharia de Computação  
+Instituição: Instituto Federal de Minas Gerais – IFMG
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```text
-TrabalhoPraticoCompiladores/
+.
 ├── AnaliseLexica.cpp
 ├── AnaliseLexica.h
 ├── AnaliseSintatica.cpp
@@ -42,158 +38,151 @@ TrabalhoPraticoCompiladores/
 ├── main_lexico.cpp
 ├── main_sintatico.cpp
 ├── Makefile
+├── README.md
 ├── testes/
-│   ├── teste.xpp
-│   ├── erro_lexico1.xpp
-│   └── erro_lexico2.xpp
-├── bin/
-├── obj/
-└── README.md
+   ├── teste_lexico_valido.xpp
+   ├── erro_lexico_string.xpp
+   ├── erro_lexico_simbolo.xpp
+   ├── erro_lexico_caractere.xpp
+   ├── erro_lexico_literal_vazio.xpp
+   ├── teste_sintatico_valido.xpp
+   ├── erro_sintatico_ponto_virgula.xpp
+   ├── erro_sintatico_parenteses.xpp
+   ├── erro_sintatico_if.xpp
+   └── erro_sintatico_estrutura.xpp
 ```
 
----
+## 🧠 Etapa 1 – Analisador Léxico
 
-## 🧩 Etapa 1 – Analisador Léxico
+O analisador léxico percorre o código-fonte **caractere por caractere**, agrupando-os em **tokens válidos** da linguagem X++.
 
-O analisador léxico é responsável por ler o código-fonte escrito em **X++** e transformá-lo em uma sequência de **tokens**, que serão utilizados pelo analisador sintático.
+### Tokens reconhecidos
 
-### Tokens Reconhecidos
-
-- Palavras reservadas (`class`, `constructor`, `if`, `else`, `for`, `return`, `print`, `read`, etc.)
+- Palavras reservadas (`class`, `if`, `for`, `return`, `constructor`)
 - Identificadores
-- Números inteiros
+- Constantes numéricas
 - Literais de string
-- Operadores aritméticos e relacionais
-- Delimitadores e símbolos especiais
+- Operadores e delimitadores
 
-### Funcionalidades
+### Tratamento de erros léxicos
 
-- Identificação de tokens com:
-  - Tipo do token
-  - Lexema correspondente
-  - Linha de ocorrência
-- Detecção de erros léxicos, como:
-  - Símbolos inválidos
-  - Literais de string não finalizados
-- Geração de logs detalhados da análise léxica
+Durante a análise, o sistema identifica e reporta erros como:
 
-### Execução do Analisador Léxico
-```bash
-mingw32-make run-lexico
-```
+- Símbolos inválidos
+- Literais de string não finalizados
+- Caracteres não reconhecidos pela linguagem
 
-## Ou especificando o arquivo de teste:
-```bash
-mingw32-make run-lexico ARQ=teste.xpp
-```
-```bash
-mingw32-make run-lexico ARQ=erro_lexico1.xpp
-```
-```bash
-mingw32-make run-lexico ARQ=erro_lexico2.xpp
-```
-
-## 🧩 Etapa 2 – Analisador Sintático
-
-O analisador sintático foi implementado utilizando a técnica de **descida recursiva**, conforme os capítulos 4 e 5 do livro do Delamaro.
-
-Ele consome os tokens gerados pelo analisador léxico e verifica se a estrutura do programa está de acordo com a gramática da linguagem **X++**.
-
-### Não-Terminais Implementados
-
-- `program`
-- `classList`
-- `classDecl`
-- `classBody`
-- `varDecl`
-- `constructorDecl`
-- `methodDecl`
-- `methodBody`
-- `statement`
-- `statList`
-- `ifStat`
-- `forStat`
-- `atribStat`
-- `expression`
-- `numExpr`
-- `term`
-- `factor`
-
-### Tratamento de Erros Sintáticos
-
-Mensagens de erro informando:
-
-- Linha do erro
-- Símbolo esperado
-- Símbolo encontrado
-
-A análise é interrompida imediatamente ao detectar um erro sintático.
-
-### Execução do Analisador Sintático
-
-```bash
-mingw32-make run-sintatico
-```
-
-## Ou especificando o arquivo de teste:
-```bash
-mingw32-make run-sintatico ARQ=teste.xpp
-```
-```bash
-mingw32-make run-sintatico ARQ=erro_lexico1.xpp
-```
-```bash
-mingw32-make run-sintatico ARQ=erro_lexico2.xpp
-```
+Ao encontrar um erro léxico, a análise é interrompida e são informados:
+- A linha do erro
+- O problema identificado
 
 ---
 
-## 🧪 Arquivos de Teste
+## 🧠 Etapa 2 – Analisador Sintático
 
-### Programa X++ Válido
+O analisador sintático foi implementado utilizando a técnica de **descida recursiva**, conforme apresentado por Delamaro.
 
-- `testes/teste.xpp`
+Cada regra da gramática da linguagem X++ foi representada por um método específico, permitindo validar as principais estruturas do programa.
 
-Contém:
+### Estruturas validadas
 
-- Declaração de classe
-- Variáveis
-- Construtor
-- Método
-- Estrutura condicional (`if`)
-- Expressões e comandos válidos
+- Declarações de classes
+- Métodos e construtores
+- Comandos condicionais (`if`)
+- Blocos de código
+- Expressões e comandos
 
-### Programas com Erros Léxicos
+### Tratamento de erros sintáticos
 
-- `testes/erro_lexico1.xpp`  
-  - Literal de string não finalizado
+Quando um erro sintático é encontrado, o sistema informa:
 
-- `testes/erro_lexico2.xpp`  
-  - Uso de símbolo inválido (`@`)
+- A linha do erro
+- O símbolo esperado
+- O token encontrado
 
-Os erros são corretamente detectados e reportados pelo analisador léxico e, quando aplicável, pelo analisador sintático.
+A execução é interrompida no **primeiro erro**, conforme a especificação do trabalho.
+
+---
+
+## 🧪 Testes Implementados
+
+Foram criados testes válidos e testes com erros propositalmente inseridos para validar o funcionamento do compilador.
+
+### 🔍 Testes Léxicos
+
+| Arquivo | Descrição |
+|--------|----------|
+| `teste_lexico_valido.xpp` | Código sem erros léxicos |
+| `erro_lexico_string.xpp` | Literal de string não finalizado |
+| `erro_lexico_simbolo.xpp` | Uso de símbolo inválido |
+| `erro_lexico_caractere.xpp` | Caractere não reconhecido |
+| `erro_lexico_literal_vazio.xpp` | Literal mal formado |
+
+### 🔍 Testes Sintáticos
+
+| Arquivo | Descrição |
+|--------|----------|
+| `teste_sintatico_valido.xpp` | Programa sintaticamente correto |
+| `erro_sintatico_ponto_virgula.xpp` | Ausência de `;` |
+| `erro_sintatico_parenteses.xpp` | Parênteses não fechados |
+| `erro_sintatico_if.xpp` | Estrutura incorreta do `if` |
+| `erro_sintatico_estrutura.xpp` | Bloco não finalizado |
+
+Todos os testes foram executados e validados por meio dos **logs exibidos no terminal**, utilizados posteriormente no relatório.
 
 ---
 
 ## ⚙️ Compilação
 
-O projeto utiliza um **Makefile** para facilitar o processo de compilação.
+O projeto utiliza um **Makefile** para facilitar a compilação.
 
-### Compilar os executáveis
+### Compilar os analisadores
 
 ```bash
 mingw32-make
 ```
 
-### Limpar arquivos gerados
+Esse comando gera os executáveis:
+
+- `lexico`
+- `sintatico`
+
+---
+
+## ▶️ Execução dos Testes
+
+Os testes são executados informando o arquivo de entrada por meio da variável `ARQ`.
+
+### Executar analisador léxico
+
 ```bash
-mingw32-make clean
+mingw32-make run-lexico ARQ=teste_lexico_valido.xpp
+```
+
+### Executar analisador sintático
+
+```bash
+mingw32-make run-sintatico ARQ=erro_sintatico_if.xpp
+```
+
+## Os arquivos de teste devem estar localizados no diretório:
+
+```text
+testes/
 ```
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🧹 Limpeza dos Executáveis
 
-- **Linguagem:** C++ (padrão C++17)
+Para remover os arquivos gerados durante a compilação, utilize o comando:
 
+```bash
+mingw32-make clean
+```
 
+## 📚 Referência
+
+DELAMARO, M. E.
+Como Construir um Compilador.
+São Paulo: Novatec, 2004.

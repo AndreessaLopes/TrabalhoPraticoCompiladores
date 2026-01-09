@@ -1,0 +1,7 @@
+class TesteErro {
+    int x;
+
+    constructor() {
+        x = 10 €;
+    }
+}

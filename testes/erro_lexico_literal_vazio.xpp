@@ -1,0 +1,7 @@
+class TesteErro {
+    string s;
+
+    constructor() {
+        s = "";
+    }
+}
