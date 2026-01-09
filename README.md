@@ -30,20 +30,20 @@ O projeto contempla:
 
 1. Abra o terminal na pasta do projeto.
 2. Compile os analisadores:
-  bash
+  ```bash
   make
-  
+  ```
 3. Execute os testes:
-  bash
+  ```bash
   make run-lexico ARQ=teste_lexico_valido.xpp
   make run-sintatico ARQ=erro_sintatico_if.xpp
-
+  ```
   Obs.: Faça para todos os arquivos presentes na pasta "testes"
   
 4. Para limpar os executáveis:
-  bash
+  ```bash
   make clean
-  
+  ``` 
 
 ### Windows
 
@@ -54,16 +54,17 @@ O projeto contempla:
   mingw32-make
   
 4. Execute os testes:
-  cmd
+  ```bash
   mingw32-make run-lexico ARQ=teste_lexico_valido.xpp
   mingw32-make run-sintatico ARQ=erro_sintatico_if.xpp
+  ```
   
   Obs.: Faça para todos os arquivos presentes na pasta "testes"
   
 5. Para limpar os executáveis:
-  cmd
+  ```bash
   mingw32-make clean
-  
+  ```
 
 *Observação:* Os comandos e nomes dos executáveis são os mesmos em ambos os sistemas. Apenas o comando make pode variar: make no Linux e mingw32-make no Windows.
 
