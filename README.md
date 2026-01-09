@@ -170,6 +170,7 @@ Esse comando gera os executáveis:
 O projeto possui dois arquivos main distintos:
 - main_lexico.cpp
 - main_sintatico.cpp
+
 O Makefile controla qual executável será gerado, não sendo necessário comentar código manualmente.
 
 ---
