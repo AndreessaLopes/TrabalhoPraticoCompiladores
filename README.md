@@ -1,23 +1,83 @@
 # Compilador X++ – Análise Léxica e Sintática
 
-Este repositório contém a implementação das duas primeiras etapas de um compilador para a linguagem **X++**, desenvolvida como Trabalho Prático da disciplina de **Compiladores** do Instituto Federal de Minas Gerais (IFMG).
+Este repositório contém a implementação das duas primeiras etapas de um compilador para a linguagem *X++, desenvolvida como Trabalho Prático da disciplina de **Compiladores* do Instituto Federal de Minas Gerais (IFMG).
+
 
 O projeto contempla:
 - Analisador léxico completo
 - Analisador sintático baseado em descida recursiva
 - Tratamento de erros léxicos e sintáticos
 - Conjunto de testes válidos e inválidos
-- Automatização da compilação e execução via Makefile
+- *Compilação e execução automatizadas via Makefile (não utilize Code::Blocks)*
 
 ---
 
-## 👥 Autores
+## Importante: Compilação e Execução
 
-- **Andressa Caroline Lopes de Assis**  
+
+*Todo o processo de compilação e execução dos testes deve ser feito exclusivamente pelo Makefile, tanto no Linux quanto no Windows.*
+
+- Não é necessário utilizar Code::Blocks ou configurar targets específicos.
+- Basta utilizar os comandos do Makefile conforme instruções abaixo.
+- Os executáveis gerados são independentes: lexico (analisador léxico) e sintatico (analisador sintático), cada um com sua própria função principal (main).
+- Os testes são executados diretamente pelo terminal, usando os comandos do Makefile.
+
+---
+
+## Instruções para Linux e Windows
+
+### Linux
+
+1. Abra o terminal na pasta do projeto.
+2. Compile os analisadores:
+  bash
+  make
+  
+3. Execute os testes:
+  bash
+  make run-lexico ARQ=teste_lexico_valido.xpp
+  make run-sintatico ARQ=erro_sintatico_if.xpp
+
+  Obs.: Faça para todos os arquivos presentes na pasta "testes"
+  
+4. Para limpar os executáveis:
+  bash
+  make clean
+  
+
+### Windows
+
+1. Abra o terminal (cmd ou PowerShell) na pasta do projeto.
+2. Certifique-se de ter o compilador g++ instalado (MinGW recomendado) e o comando make disponível (MinGW/MSYS ou similar).
+3. Compile os analisadores:
+  cmd
+  mingw32-make
+  
+4. Execute os testes:
+  cmd
+  mingw32-make run-lexico ARQ=teste_lexico_valido.xpp
+  mingw32-make run-sintatico ARQ=erro_sintatico_if.xpp
+  
+  Obs.: Faça para todos os arquivos presentes na pasta "testes"
+  
+5. Para limpar os executáveis:
+  cmd
+  mingw32-make clean
+  
+
+*Observação:* Os comandos e nomes dos executáveis são os mesmos em ambos os sistemas. Apenas o comando make pode variar: make no Linux e mingw32-make no Windows.
+
+---
+
+---
+
+## Autores
+
+- *Andressa Caroline Lopes de Assis*  
   RA: 0072749  
   Responsável pela análise léxica, organização dos testes, Makefile e documentação
 
-- **Bruno Augusto de Oliveira**  
+- *Bruno Augusto de Oliveira*  
   RA: 0073211  
   Responsável pela análise sintática e definição das regras gramaticais
 
@@ -26,9 +86,9 @@ Instituição: Instituto Federal de Minas Gerais – IFMG
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
-```text
+text
 .
 ├── AnaliseLexica.cpp
 ├── AnaliseLexica.h
@@ -50,15 +110,15 @@ Instituição: Instituto Federal de Minas Gerais – IFMG
    ├── erro_sintatico_parenteses.xpp
    ├── erro_sintatico_if.xpp
    └── erro_sintatico_estrutura.xpp
-```
 
-## 🧠 Etapa 1 – Analisador Léxico
 
-O analisador léxico percorre o código-fonte **caractere por caractere**, agrupando-os em **tokens válidos** da linguagem X++.
+## Etapa 1 – Analisador Léxico
+
+O analisador léxico percorre o código-fonte *caractere por caractere, agrupando-os em **tokens válidos* da linguagem X++.
 
 ### Tokens reconhecidos
 
-- Palavras reservadas (`class`, `if`, `for`, `return`, `constructor`)
+- Palavras reservadas (class, if, for, return, constructor)
 - Identificadores
 - Constantes numéricas
 - Literais de string
@@ -78,9 +138,9 @@ Ao encontrar um erro léxico, a análise é interrompida e são informados:
 
 ---
 
-## 🧠 Etapa 2 – Analisador Sintático
+## Etapa 2 – Analisador Sintático
 
-O analisador sintático foi implementado utilizando a técnica de **descida recursiva**, conforme apresentado por Delamaro.
+O analisador sintático foi implementado utilizando a técnica de *descida recursiva*, conforme apresentado por Delamaro.
 
 Cada regra da gramática da linguagem X++ foi representada por um método específico, permitindo validar as principais estruturas do programa.
 
@@ -88,7 +148,7 @@ Cada regra da gramática da linguagem X++ foi representada por um método espec�
 
 - Declarações de classes
 - Métodos e construtores
-- Comandos condicionais (`if`)
+- Comandos condicionais (if)
 - Blocos de código
 - Expressões e comandos
 
@@ -100,130 +160,42 @@ Quando um erro sintático é encontrado, o sistema informa:
 - O símbolo esperado
 - O token encontrado
 
-A execução é interrompida no **primeiro erro**, conforme a especificação do trabalho.
+A execução é interrompida no *primeiro erro*, conforme a especificação do trabalho.
 
 ---
 
-## 🧪 Testes Implementados
+## Testes Implementados
 
-Foram criados testes válidos e testes com erros propositalmente inseridos para validar o funcionamento do compilador.
 
-### 🔍 Testes Léxicos
+Foram criados testes válidos e testes com erros propositalmente inseridos para validar o funcionamento do compilador. Todos os arquivos de teste estão no diretório testes/.
+
+###  Lista completa de arquivos de teste
+
+### Testes Léxicos
 
 | Arquivo | Descrição |
 |--------|----------|
-| `teste_lexico_valido.xpp` | Código sem erros léxicos |
-| `erro_lexico_string.xpp` | Literal de string não finalizado |
-| `erro_lexico_simbolo.xpp` | Uso de símbolo inválido |
-| `erro_lexico_caractere.xpp` | Caractere não reconhecido |
-| `erro_lexico_literal_vazio.xpp` | Literal mal formado |
+| teste_lexico_valido.xpp | Código sem erros léxicos |
+| erro_lexico_string.xpp | Literal de string não finalizado |
+| erro_lexico_simbolo.xpp | Uso de símbolo inválido |
+| erro_lexico_caractere.xpp | Caractere não reconhecido |
+| erro_lexico_literal_vazio.xpp | Literal mal formado |
 
-### 🔍 Testes Sintáticos
+### Testes Sintáticos
 
 | Arquivo | Descrição |
 |--------|----------|
-| `teste_sintatico_valido.xpp` | Programa sintaticamente correto |
-| `erro_sintatico_ponto_virgula.xpp` | Ausência de `;` |
-| `erro_sintatico_parenteses.xpp` | Parênteses não fechados |
-| `erro_sintatico_if.xpp` | Estrutura incorreta do `if` |
-| `erro_sintatico_estrutura.xpp` | Bloco não finalizado |
+| teste_sintatico_valido.xpp | Programa sintaticamente correto |
+| erro_sintatico_ponto_virgula.xpp | Ausência de ; |
+| erro_sintatico_parenteses.xpp | Parênteses não fechados |
+| erro_sintatico_if.xpp | Estrutura incorreta do if |
+| erro_sintatico_estrutura.xpp | Bloco não finalizado |
 
-Todos os testes foram executados e validados por meio dos **logs exibidos no terminal**, utilizados posteriormente no relatório.
-
----
-
-## ⚙️ Compilação
-
-O projeto utiliza um **Makefile** para automatizar o processo de compilação dos analisadores léxico e sintático.  
-Os comandos variam de acordo com o sistema operacional utilizado.
-
-### 🔹 Windows (MinGW)
-
-No Windows, é necessário ter o **MinGW** instalado e configurado no `PATH`.
-
-Para compilar o projeto, execute:
-
-```bash
-mingw32-make
-```
-
-Esse comando gera os executáveis:
-
-- `lexico`
-- `sintatico`
-
-### 🔹 Linux / macOS
-
-Em sistemas Linux ou macOS, é necessário ter o GCC e o make instalados.
-
-Para compilar o projeto, execute:
-
-```bash
-make
-```
-Esse comando gera os executáveis:
-
-- `lexico`
-- `sintatico`
-
-### OBSERVAÇÃO SOBRE OS MAINS
-O projeto possui dois arquivos main distintos:
-- main_lexico.cpp
-- main_sintatico.cpp
-
-O Makefile controla qual executável será gerado, não sendo necessário comentar código manualmente.
+Todos os testes foram executados e validados por meio dos *logs exibidos no terminal*, utilizados posteriormente no relatório.
 
 ---
 
-## ▶️ Execução dos Testes
-
-Os testes são executados informando o arquivo de entrada por meio da variável `ARQ`.
-
-### Executar analisador léxico
-
-### 🔹 Windows (MinGW)
-```bash
-mingw32-make run-lexico ARQ=teste_lexico_valido.xpp
-```
-
-### 🔹 Linux / macOS
-```bash
-make run-lexico ARQ=teste_lexico_valido.xpp
-```
-
-### Executar analisador sintático
-
-### 🔹 Windows (MinGW)
-```bash
-mingw32-make run-sintatico ARQ=erro_sintatico_if.xpp
-```
-### 🔹 Linux / macOS
-```bash
-make run-sintatico ARQ=erro_sintatico_if.xpp
-```
-
-## Os arquivos de teste devem estar localizados no diretório:
-
-```text
-testes/
-```
-
----
-
-## 🧹 Limpeza dos Executáveis
-
-Para remover os arquivos gerados durante a compilação, utilize o comando:
-
-### 🔹 Windows (MinGW)
-```bash
-mingw32-make clean
-```
-### 🔹 Linux / macOS
-```bash
-make clean
-```
-
-## 📚 Referência
+## Referência
 
 DELAMARO, M. E.
 Como Construir um Compilador.
