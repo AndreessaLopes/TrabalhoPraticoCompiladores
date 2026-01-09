@@ -88,7 +88,7 @@ Instituição: Instituto Federal de Minas Gerais – IFMG
 
 ## Estrutura do Projeto
 
-text
+```text
 .
 ├── AnaliseLexica.cpp
 ├── AnaliseLexica.h
@@ -110,6 +110,7 @@ text
    ├── erro_sintatico_parenteses.xpp
    ├── erro_sintatico_if.xpp
    └── erro_sintatico_estrutura.xpp
+```
 
 
 ## Etapa 1 – Analisador Léxico
