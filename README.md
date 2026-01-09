@@ -134,9 +134,14 @@ Todos os testes foram executados e validados por meio dos **logs exibidos no ter
 
 ## ⚙️ Compilação
 
-O projeto utiliza um **Makefile** para facilitar a compilação.
+O projeto utiliza um **Makefile** para automatizar o processo de compilação dos analisadores léxico e sintático.  
+Os comandos variam de acordo com o sistema operacional utilizado.
 
-### Compilar os analisadores
+### 🔹 Windows (MinGW)
+
+No Windows, é necessário ter o **MinGW** instalado e configurado no `PATH`.
+
+Para compilar o projeto, execute:
 
 ```bash
 mingw32-make
@@ -147,6 +152,26 @@ Esse comando gera os executáveis:
 - `lexico`
 - `sintatico`
 
+### 🔹 Linux / macOS
+
+Em sistemas Linux ou macOS, é necessário ter o GCC e o make instalados.
+
+Para compilar o projeto, execute:
+
+```bash
+make
+```
+Esse comando gera os executáveis:
+
+- `lexico`
+- `sintatico`
+
+### OBSERVAÇÃO SOBRE OS MAINS
+O projeto possui dois arquivos main distintos:
+- main_lexico.cpp
+- main_sintatico.cpp
+O Makefile controla qual executável será gerado, não sendo necessário comentar código manualmente.
+
 ---
 
 ## ▶️ Execução dos Testes
@@ -155,14 +180,25 @@ Os testes são executados informando o arquivo de entrada por meio da variável 
 
 ### Executar analisador léxico
 
+### 🔹 Windows (MinGW)
 ```bash
 mingw32-make run-lexico ARQ=teste_lexico_valido.xpp
 ```
 
+### 🔹 Linux / macOS
+```bash
+make run-lexico ARQ=teste_lexico_valido.xpp
+```
+
 ### Executar analisador sintático
 
+### 🔹 Windows (MinGW)
 ```bash
 mingw32-make run-sintatico ARQ=erro_sintatico_if.xpp
+```
+### 🔹 Linux / macOS
+```bash
+make run-sintatico ARQ=erro_sintatico_if.xpp
 ```
 
 ## Os arquivos de teste devem estar localizados no diretório:
@@ -177,8 +213,13 @@ testes/
 
 Para remover os arquivos gerados durante a compilação, utilize o comando:
 
+### 🔹 Windows (MinGW)
 ```bash
 mingw32-make clean
+```
+### 🔹 Linux / macOS
+```bash
+make clean
 ```
 
 ## 📚 Referência
